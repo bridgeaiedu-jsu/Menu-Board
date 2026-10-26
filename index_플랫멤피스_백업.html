@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>브릿지 커피 메뉴판</title>
+
+  <!-- ╔══════════════════════════════════════════════════════════════╗
+       ║  ★★★ 여기가 "메뉴 수정 구역" 입니다 (메뉴·가격은 여기만 고치세요) ★★★  ║
+       ╚══════════════════════════════════════════════════════════════╝
+
+       화면에 보이는 모든 메뉴는 아래 목록 하나에서 나옵니다.
+       이 목록만 고치면 화면이 알아서 바뀝니다. 다른 곳은 건드릴 필요가 없어요.
+
+       ■ 읽는 방법
+         메뉴 하나는 이렇게 생겼습니다 (한 줄):
+             { 이름: "아메리카노", 가격: "4,500원", 설명: "산미가 적은 고소한 원두" },
+         - 이름 : 메뉴 이름
+         - 가격 : 가격 (숫자와 쉼표, '원'까지 같이 적으세요)
+         - 설명 : 한 줄 설명
+
+       ■ 가격을 고치고 싶을 때
+         1) 고칠 메뉴 이름을 찾는다.  2) 같은 줄의 가격: "4,500원" 에서
+         큰따옴표(" ") 안의 글자만 바꾼다.  예) "4,500원" → "4,800원"
+         ※ 큰따옴표(")와 줄 끝의 쉼표(,)는 지우지 마세요!
+
+       ■ 메뉴를 추가하고 싶을 때
+         1) 추가하고 싶은 칸(커피 / 논커피 / 디저트)을 찾는다.
+         2) 그 칸 안에서 메뉴 한 줄을 통째로 복사해서 바로 아래 줄에 붙여 넣는다.
+         3) 붙여 넣은 줄의 이름 / 가격 / 설명 글자만 바꾼다.
+         ※ 한 줄 전체를 복사해야 합니다. (맨 앞 { 부터 맨 끝 }, 까지)
+
+       ■ 메뉴를 지우고 싶을 때
+         지울 메뉴가 있는 줄 하나를 통째로 지운다. (맨 앞 { 부터 맨 끝 }, 까지)
+
+       ■ 새 칸(예: 빵, 음료)을 만들고 싶을 때
+         "디저트" 칸 전체 (이름: "디저트" 부터 맨 끝 }, 까지)를 복사해서
+         바로 아래에 붙여 넣고, 칸 이름과 메뉴 글자를 바꾼다.
+
+       ■ 칸 순서를 바꾸고 싶을 때
+         칸 전체를 잘라내서 원하는 자리에 붙여 넣는다.
+
+       ■ 자주 하는 실수 (화면이 하얗게 나오거나 메뉴가 사라질 때)
+         - 큰따옴표(")를 지웠거나 하나만 남았다
+         - 줄 끝의 쉼표(,)를 지웠다
+         - 가운데 { } 중괄호나 [ ] 대괄호를 지웠다
+         → 이럴 땐 방금 고친 부분만 원래대로 되돌리면 됩니다.
+         → 그래도 안 되면 클로드에게 "메뉴판이 안 나와요"라고 말해 주세요. -->
+  <script>
+    const 메뉴판 = [
+
+      // ───────────── 첫 번째 칸: 커피 ─────────────
+      {
+        이름: "커피",
+        메뉴: [
+          // ↓ 커피 메뉴를 추가하려면 아래 줄 하나를 복사해서 붙여 넣으세요
+          { 이름: "아메리카노",       가격: "4,500원", 설명: "산미가 적은 고소한 원두" },
+          { 이름: "시그니처아메리카노",       가격: "7,500원", 설명: "산미가 적은 고소한 원두" },
+          { 이름: "카페라떼",         가격: "5,000원", 설명: "부드러운 우유 거품" },
+          { 이름: "바닐라 라떼",      가격: "5,500원", 설명: "바닐라빈을 직접 우려낸 시럽" },
+          { 이름: "아인슈페너",       가격: "5,800원", 설명: "단맛을 줄인 수제 크림" },
+          { 이름: "콜드브루",         가격: "5,300원", 설명: "12시간 저온 추출, 목넘김이 깔끔함" },
+          { 이름: "디카페인 아메리카노", 가격: "5,000원", 설명: "카페인 걱정 없이 편하게" },
+        ]
+      },
+
+      // ───────────── 두 번째 칸: 논커피 ─────────────
+      {
+        이름: "논커피",
+        메뉴: [
+          // ↓ 논커피 메뉴를 추가하려면 아래 줄 하나를 복사해서 붙여 넣으세요
+          { 이름: "흑임자 라떼", 가격: "5,500원", 설명: "국산 흑임자를 직접 갈아 넣음" },
+          { 이름: "말차 라떼",   가격: "5,800원", 설명: "우지 말차, 쌉쌀한 맛이 진함" },
+          { 이름: "쑥 라떼",     가격: "5,500원", 설명: "강화도 쑥, 은은하고 담백함" },
+          { 이름: "곡물 라떼",   가격: "5,300원", 설명: "볶은 곡물의 구수한 맛" },
+          { 이름: "자몽에이드",  가격: "6,000원", 설명: "생과일 자몽 과육을 그대로" },
+        ]
+      },
+
+      // ───────────── 세 번째 칸: 디저트 ─────────────
+      {
+        이름: "디저트",
+        메뉴: [
+          // ↓ 디저트 메뉴를 추가하려면 아래 줄 하나를 복사해서 붙여 넣으세요
+          { 이름: "치즈케이크",       가격: "6,500원", 설명: "굽지 않은 부드러운 식감" },
+          { 이름: "당근케이크",       가격: "6,000원", 설명: "견과류를 넉넉히 넣음" },
+          { 이름: "스콘",             가격: "4,000원", 설명: "겉은 바삭 속은 촉촉, 잼과 함께" },
+          { 이름: "바스크 치즈케이크", 가격: "6,800원", 설명: "겉면을 진하게 태운 풍미" },
+        ]
+      },
+
+    ];
+  </script>
+
+  <!-- 디자인 방향: 플랫 벡터 + 멤피스 장식 + 파스텔 배경
+       (예전 유리 느낌 디자인은 index_글래스모피즘_백업.html 에 그대로 남겨두었습니다)
+       아래 style 부분은 "모양" 설정이라 메뉴·가격을 고칠 때는 건드리지 않아도 됩니다. -->
+  <style>
+    /* ===== 색깔 설정 (색을 바꾸고 싶으면 여기 줄만 고치세요) ===== */
+    :root {
+      --brown: #4A3728;    /* 짙은 갈색: 글자, 테두리, 아래 영역 */
+      --cream: #F5EFE6;    /* 크림색: 전체 배경 */
+      --paper: #FFFBF4;    /* 밝은 크림: 메뉴 카드 안쪽 */
+      --peach: #FFD3BF;    /* 파스텔 복숭아 */
+      --mint:  #BFE8D6;    /* 파스텔 민트 */
+      --butter:#FFE9A8;    /* 파스텔 노랑 */
+      --pink:  #F8C8DC;    /* 파스텔 분홍 */
+      --sky:   #C8DDF5;    /* 파스텔 하늘 */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      /* 글꼴: 고운 돋움을 먼저 쓰고, 없으면 맑은 고딕을 씁니다 */
+      font-family: "고운 돋움", "GowunDodum", "Gowun Dodum", "맑은 고딕", "Malgun Gothic", sans-serif;
+      background: var(--cream);
+      /* 멤피스 느낌의 작은 점 무늬 배경 */
+      background-image: radial-gradient(rgba(74, 55, 40, 0.13) 1.5px, transparent 1.5px);
+      background-size: 18px 18px;
+      color: var(--brown);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* 휴대폰 화면(390px)에 맞춘 가운데 영역 */
+    .page {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      padding: 28px 20px 32px;
+      overflow: hidden;
+      overflow: clip;   /* 장식이 삐져나오지 않게 자르면서, 아래 카테고리 버튼이 위에 붙어 따라오게 해 줍니다 */
+    }
+
+    /* 장식 도형들 (글자 뒤에 깔리는 멤피스 조각) */
+    .deco { position: absolute; pointer-events: none; }
+
+    /* ===== 1. 맨 위: 가게 이름과 소개 ===== */
+    header {
+      position: relative;
+      background: var(--peach);
+      border: 2.5px solid var(--brown);
+      border-radius: 24px;
+      box-shadow: 5px 5px 0 var(--brown);   /* 번지지 않는 납작한 그림자 */
+      padding: 34px 20px 28px;
+      text-align: center;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+    header .place {
+      display: inline-block;
+      background: var(--paper);
+      border: 2px solid var(--brown);
+      border-radius: 999px;
+      font-size: 12px;
+      padding: 3px 12px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    header h1 { font-size: 34px; letter-spacing: 1px; margin-bottom: 8px; position: relative; }
+    header p  { font-size: 15px; position: relative; }
+
+    /* ===== 카테고리 버튼 (전체 / 커피 / 논커피 / 디저트) =====
+       화면을 내려도 맨 위에 붙어 따라옵니다. 버튼 글자는 파일 맨 위 메뉴 목록의 칸 이름에서 자동으로 만들어져요. */
+    #tabs {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      margin: 0 -20px 22px;           /* 좌우로 넓혀서 스크롤할 때 카드가 비치지 않게 */
+      padding: 12px 20px 10px;
+      background: var(--cream);
+    }
+    .tab-button {
+      flex: 1;                         /* 버튼 4개가 가로 폭을 똑같이 나눠 가짐 */
+      min-height: 48px;                /* 손가락으로 누르기 편한 높이 */
+      border: 2.5px solid var(--brown);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--brown);
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--brown);
+    }
+    .tab-button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--brown); }
+    /* 지금 선택된 버튼: 짙은 갈색 바탕 + 노란 글자로 확 다르게 */
+    .tab-button.active {
+      background: var(--brown);
+      color: var(--butter);
+    }
+
+    /* ===== 2. 가운데: 메뉴 목록 ===== */
+    #menu-area { position: relative; margin-bottom: 32px; }
+
+    .category { margin-bottom: 30px; }
+    .category:last-child { margin-bottom: 0; }
+
+    /* 칸 제목 (커피 / 논커피 / 디저트) */
+    .category-title {
+      display: inline-block;
+      border: 2.5px solid var(--brown);
+      border-radius: 999px;
+      box-shadow: 3px 3px 0 var(--brown);
+      padding: 5px 18px;
+      font-size: 17px;
+      font-weight: bold;
+      margin: 0 0 16px 4px;
+      background: var(--mint);
+    }
+    /* 칸마다 제목 색이 달라집니다: 민트 → 분홍 → 하늘 (4번째부터 반복) */
+    .category:nth-child(3n+2) .category-title { background: var(--pink); }
+    .category:nth-child(3n+3) .category-title { background: var(--sky); }
+
+    .category-items { display: flex; flex-direction: column; gap: 14px; }
+
+    .menu-item {
+      background: var(--paper);
+      border: 2.5px solid var(--brown);
+      border-radius: 18px;
+      box-shadow: 4px 4px 0 var(--brown);
+      padding: 16px 18px;
+    }
+    .menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .menu-name { font-size: 18px; font-weight: bold; }
+    /* 가격표: 칸 제목과 같은 파스텔 색이 입혀집니다 */
+    .menu-price {
+      border: 2px solid var(--brown);
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+      background: var(--mint);
+    }
+    .category:nth-child(3n+2) .menu-price { background: var(--pink); }
+    .category:nth-child(3n+3) .menu-price { background: var(--sky); }
+    .menu-desc { font-size: 14px; line-height: 1.5; opacity: 0.85; }
+
+    /* ===== 3. 맨 아래: 영업시간과 전화 버튼 ===== */
+    footer {
+      position: relative;
+      background: var(--brown);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    footer h2 { font-size: 16px; margin-bottom: 10px; }
+    .hours { font-size: 14px; line-height: 1.9; margin-bottom: 18px; }
+
+    .call-button {
+      display: block;
+      padding: 14px;
+      border: 2.5px solid var(--cream);
+      border-radius: 14px;
+      background: var(--butter);
+      color: var(--brown);
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 var(--mint);
+    }
+    .call-button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--mint); }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- ===== 1. 맨 위: 가게 이름과 한 줄 소개 =====
+         가게 이름이나 소개를 바꾸려면 아래 글자만 고치세요. -->
+    <header>
+      <!-- 장식 도형 (지우거나 위치를 바꿔도 메뉴에는 영향 없습니다) -->
+      <svg class="deco" style="top:-14px; left:-14px;" width="70" height="70" viewBox="0 0 70 70" aria-hidden="true">
+        <circle cx="35" cy="35" r="30" fill="#BFE8D6" stroke="#4A3728" stroke-width="2.5"/>
+      </svg>
+      <svg class="deco" style="top:14px; right:14px;" width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <polygon points="23,4 43,40 3,40" fill="#FFE9A8" stroke="#4A3728" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <svg class="deco" style="bottom:10px; left:18px;" width="80" height="24" viewBox="0 0 80 24" aria-hidden="true">
+        <polyline points="2,18 12,6 22,18 32,6 42,18 52,6 62,18 72,6" fill="none" stroke="#4A3728" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="deco" style="bottom:-16px; right:-12px;" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="8" y="8" width="48" height="48" rx="8" fill="#F8C8DC" stroke="#4A3728" stroke-width="2.5" transform="rotate(15 32 32)"/>
+      </svg>
+
+      <span class="place">광주 북구 비엔날레</span>
+      <h1>브릿지 커피</h1>
+      <p>매일 직접 볶는 스페셜티 커피</p>
+    </header>
+
+    <!-- ===== 2. 가운데: 메뉴 목록 =====
+         이 자리는 비어 있어도 괜찮습니다.
+         파일 맨 위 "메뉴 수정 구역"의 목록을 보고 아래 스크립트가 자동으로 채워 줍니다.
+         (그래서 여기는 고칠 필요가 없습니다) -->
+    <!-- 카테고리 버튼 자리 (버튼은 아래 스크립트가 자동으로 만들어 줍니다. 고칠 필요 없음) -->
+    <nav id="tabs" aria-label="메뉴 종류"></nav>
+
+    <main id="menu-area"></main>
+
+    <!-- ===== 3. 맨 아래: 영업시간과 전화 걸기 버튼 =====
+         영업시간은 글자만 고치면 됩니다.
+         전화번호는 아래 href="tel:..." 부분에 숫자만(하이픈 없이) 넣으세요.
+         화면에 보이는 "062-000-0000" 글자도 같이 바꿔야 합니다. -->
+    <footer>
+      <h2>영업시간</h2>
+      <p class="hours">
+        평일 08:00 - 21:00<br>
+        주말 10:00 - 20:00<br>
+        목요일 휴무
+      </p>
+      <a class="call-button" href="tel:0620000000">전화 걸기 062-000-0000</a>
+    </footer>
+
+  </div>
+
+  <!-- 메뉴 목록을 화면에 그려 주는 부분입니다. (고치지 않아도 됩니다)
+       파일 맨 위의 "메뉴판" 목록을 읽어서 칸 제목 + 메뉴 카드를 차례로 만듭니다. -->
+  <script>
+    const 메뉴자리 = document.getElementById("menu-area");
+
+    메뉴판.forEach(function (칸) {
+      const 칸상자 = document.createElement("section");
+      칸상자.className = "category";
+
+      const 제목 = document.createElement("h2");
+      제목.className = "category-title";
+      제목.textContent = 칸.이름;
+      칸상자.appendChild(제목);
+
+      const 목록 = document.createElement("div");
+      목록.className = "category-items";
+
+      칸.메뉴.forEach(function (메뉴) {
+        const 카드 = document.createElement("div");
+        카드.className = "menu-item";
+
+        const 윗줄 = document.createElement("div");
+        윗줄.className = "menu-top";
+
+        const 이름 = document.createElement("span");
+        이름.className = "menu-name";
+        이름.textContent = 메뉴.이름;
+
+        const 가격 = document.createElement("span");
+        가격.className = "menu-price";
+        가격.textContent = 메뉴.가격;
+
+        윗줄.appendChild(이름);
+        윗줄.appendChild(가격);
+
+        const 설명 = document.createElement("p");
+        설명.className = "menu-desc";
+        설명.textContent = 메뉴.설명;
+
+        카드.appendChild(윗줄);
+        카드.appendChild(설명);
+        목록.appendChild(카드);
+      });
+
+      칸상자.appendChild(목록);
+      메뉴자리.appendChild(칸상자);
+    });
+
+    // ===== 카테고리 버튼 만들기 =====
+    // 버튼 이름은 "전체" + 위쪽 메뉴 목록의 칸 이름(커피, 논커피, 디저트...)입니다.
+    // 칸을 새로 만들면 버튼도 저절로 하나 늘어납니다.
+    const 버튼자리 = document.getElementById("tabs");
+    const 모든칸 = 메뉴자리.querySelectorAll(".category");
+    const 버튼이름들 = ["전체"].concat(메뉴판.map(function (칸) { return 칸.이름; }));
+
+    function 칸보여주기(고른번호) {
+      // 고른번호 0 = 전체, 1 = 첫 번째 칸, 2 = 두 번째 칸 ...
+      모든칸.forEach(function (칸상자, 번호) {
+        칸상자.hidden = (고른번호 !== 0 && 고른번호 !== 번호 + 1);
+      });
+      버튼자리.querySelectorAll(".tab-button").forEach(function (버튼, 번호) {
+        버튼.classList.toggle("active", 번호 === 고른번호);
+        버튼.setAttribute("aria-pressed", 번호 === 고른번호);
+      });
+    }
+
+    버튼이름들.forEach(function (글자, 번호) {
+      const 버튼 = document.createElement("button");
+      버튼.type = "button";
+      버튼.className = "tab-button";
+      버튼.textContent = 글자;
+      버튼.addEventListener("click", function () { 칸보여주기(번호); });
+      버튼자리.appendChild(버튼);
+    });
+
+    칸보여주기(0);   // 처음 들어오면 "전체"가 선택된 상태
+  </script>
+</body>
+</html>
